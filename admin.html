@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Archivo Diseño Latinoamericano</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F2EDE4;--bg2:#E8E1D5;--fg:#1A1714;--fg2:#5C5650;--fg3:#9B9590;
+  --accent:#C4502A;--accent2:#E8C49A;--border:#D4CEC6;
+  --card:#FDFAF6;--success:#3B7A4A;--danger:#A32D2D;--warn:#854F0B;
+  --mono:'DM Mono',monospace;--serif:'DM Serif Display',serif;--sans:'Inter',sans-serif;
+  --sidebar:240px;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+aside{
+  width:var(--sidebar);background:var(--fg);color:var(--bg);
+  display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;
+  overflow-y:auto;z-index:100;
+}
+.sidebar-logo{padding:1.5rem 1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sidebar-logo h1{font-family:var(--serif);font-size:16px;line-height:1.3}
+.sidebar-logo h1 em{color:var(--accent2)}
+.sidebar-logo .build{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.35);margin-top:4px}
+nav{flex:1;padding:0.75rem 0}
+.nav-section{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);padding:1rem 1.25rem 0.4rem}
+.nav-item{
+  display:flex;align-items:center;gap:10px;padding:0.6rem 1.25rem;
+  cursor:pointer;color:rgba(255,255,255,0.6);font-size:13px;
+  transition:background 0.15s,color 0.15s;border-left:2px solid transparent;
+}
+.nav-item:hover{background:rgba(255,255,255,0.05);color:#fff}
+.nav-item.active{background:rgba(196,80,42,0.2);color:#fff;border-left-color:var(--accent)}
+.nav-item .icon{width:16px;text-align:center;font-size:14px;opacity:0.7}
+.nav-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:9px;padding:1px 7px;border-radius:10px;font-family:var(--mono)}
+.sidebar-footer{padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,0.08);font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3)}
+.api-status{display:flex;align-items:center;gap:6px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#888}
+.status-dot.ok{background:#4CAF50;animation:pulse 2s infinite}
+.status-dot.err{background:#E24B4A}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* ── MAIN ── */
+main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column;min-height:100vh}
+
+/* ── TOP BAR ── */
+.topbar{
+  background:var(--card);border-bottom:0.5px solid var(--border);
+  padding:0 1.5rem;height:52px;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:50;
+}
+.topbar-title{font-family:var(--serif);font-size:20px}
+.topbar-actions{display:flex;gap:8px}
+.btn{
+  padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);
+  border:0.5px solid var(--border);background:var(--card);color:var(--fg2);
+  transition:all 0.15s;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{background:#A3401E;color:#fff;border-color:#A3401E}
+.btn-danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+.btn-danger:hover{background:#7A1F1F;color:#fff}
+.btn-success{background:var(--success);color:#fff;border-color:var(--success)}
+.btn-sm{padding:4px 10px;font-size:10px}
+
+/* ── PAGES ── */
+.page{display:none;padding:1.5rem;animation:fadeIn 0.2s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── STATS CARDS ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:1.5rem}
+.stat-card{background:var(--card);border:0.5px solid var(--border);border-radius:2px;padding:1rem}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--fg3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px}
+.stat-val{font-family:var(--serif);font-size:32px;color:var(--fg)}
+.stat-sub{font-size:11px;color:var(--fg3);margin-top:2px}
+
+/* ── CHART BAR ── */
+.bar-chart{display:flex;flex-direction:column;gap:6px;margin-top:0.75rem}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.bar-label{width:100px;color:var(--fg2);text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:18px;background:var(--bg2);border-radius:1px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent);border-radius:1px;transition:width 0.6s ease;display:flex;align-items:center;padding-left:6px}
+.bar-count{font-family:var(--mono);font-size:9px;color:#fff;opacity:0.9}
+
+/* ── TABLE ── */
+.table-wrap{background:var(--card);border:0.5px solid var(--border);border-radius:2px;overflow:hidden}
+.table-toolbar{padding:0.75rem 1rem;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+.table-toolbar input,.table-toolbar select{
+  background:var(--bg);border:0.5px solid var(--border);border-radius:2px;
+  padding:5px 10px;font-size:12px;color:var(--fg);font-family:var(--sans);
+}
+.table-toolbar input:focus,.table-toolbar select:focus{outline:none;border-color:var(--accent)}
+.table-toolbar input{width:220px}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{
+  padding:8px 12px;text-align:left;font-family:var(--mono);font-size:9px;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--fg3);
+  background:var(--bg2);border-bottom:0.5px solid var(--border);white-space:nowrap;
+}
+.tbl td{padding:9px 12px;border-bottom:0.5px solid var(--border);color:var(--fg2);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--bg2)}
+.tbl .name-col{color:var(--fg);font-weight:500;max-width:180px}
+.tbl .desc-col{max-width:260px;color:var(--fg3);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tbl .actions{display:flex;gap:6px;justify-content:flex-end}
+.color-swatch{width:14px;height:14px;border-radius:50%;display:inline-block;border:0.5px solid rgba(0,0,0,0.1);flex-shrink:0}
+.country-pill{display:inline-block;background:var(--fg);color:var(--accent2);font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:1px}
+.decade-pill{display:inline-block;background:var(--bg2);color:var(--fg2);font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:1px;border:0.5px solid var(--border)}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(26,23,20,0.7);z-index:200;
+  display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;
+  opacity:0;pointer-events:none;transition:opacity 0.2s;overflow-y:auto;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--card);border:0.5px solid var(--border);border-radius:2px;
+  width:680px;max-width:100%;position:relative;
+}
+.modal-header{
+  padding:1.25rem 1.5rem;border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--fg);color:var(--bg);
+}
+.modal-header h2{font-family:var(--serif);font-size:22px}
+.modal-close{background:none;border:none;color:rgba(255,255,255,0.6);font-size:22px;cursor:pointer;line-height:1}
+.modal-close:hover{color:#fff}
+.modal-body{padding:1.5rem}
+.modal-footer{padding:1rem 1.5rem;border-top:0.5px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+
+/* ── FORM ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group.full{grid-column:1/-1}
+label{font-family:var(--mono);font-size:10px;color:var(--fg3);letter-spacing:0.08em;text-transform:uppercase}
+input[type=text],input[type=color],textarea,select{
+  background:var(--bg);border:0.5px solid var(--border);border-radius:2px;
+  padding:8px 10px;font-size:13px;color:var(--fg);font-family:var(--sans);
+  transition:border-color 0.15s;
+}
+input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+input[type=color]{padding:3px 5px;height:34px;cursor:pointer}
+textarea{resize:vertical;min-height:90px;line-height:1.6}
+.form-hint{font-size:11px;color:var(--fg3);margin-top:2px}
+
+/* ── UPLOAD ── */
+.drop-zone{
+  border:1.5px dashed var(--border);border-radius:2px;padding:2.5rem 2rem;
+  text-align:center;cursor:pointer;color:var(--fg3);
+  transition:border-color 0.2s,background 0.2s;background:var(--bg);
+}
+.drop-zone:hover,.drop-zone.drag{border-color:var(--accent);background:rgba(196,80,42,0.04);color:var(--accent)}
+.drop-zone .drop-icon{font-size:32px;margin-bottom:10px}
+.drop-zone p{font-size:13px;margin-bottom:4px}
+.drop-zone small{font-family:var(--mono);font-size:10px}
+.upload-progress{display:none;margin-top:1rem}
+.progress-bar{height:3px;background:var(--bg2);border-radius:1px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);width:0;transition:width 0.3s}
+
+/* ── DETECTED COLS ── */
+.col-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem}
+.col-tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:1px}
+.col-ok{background:var(--fg);color:var(--accent2)}
+.col-unk{background:var(--bg2);color:var(--fg3);border:0.5px solid var(--border)}
+.preview-table-wrap{overflow-x:auto;margin-top:1rem;border:0.5px solid var(--border);border-radius:2px}
+
+/* ── TOAST ── */
+#toast-container{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;gap:8px}
+.toast{
+  background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:2px;
+  font-size:13px;min-width:260px;display:flex;align-items:center;gap:10px;
+  animation:slideIn 0.25s ease;
+}
+.toast.success .t-icon{color:#4CAF50}
+.toast.error .t-icon{color:#E24B4A}
+.toast.info .t-icon{color:var(--accent2)}
+@keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
+
+/* ── DIFF COLORS ── */
+.text-success{color:var(--success)}
+.text-danger{color:var(--danger)}
+.text-warn{color:var(--warn)}
+
+/* ── EMPTY STATE ── */
+.empty{padding:3rem;text-align:center;color:var(--fg3)}
+.empty .e-icon{font-size:36px;margin-bottom:12px}
+.empty p{font-size:13px}
+
+/* ── SECTION HEADING ── */
+.section-h{
+  font-family:var(--mono);font-size:10px;color:var(--fg3);
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding-bottom:6px;border-bottom:0.5px solid var(--border);margin-bottom:1rem;
+}
+
+/* ── CONFIRM ── */
+.confirm-text{font-size:14px;line-height:1.7;margin-bottom:1rem}
+.confirm-text strong{color:var(--danger)}
+
+/* GRID PANEL */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────────────────── -->
+<aside>
+  <div class="sidebar-logo">
+    <h1>Archivo<br><em>Diseño A. Latina</em></h1>
+    <div class="build">ADMIN PANEL v1.0</div>
+  </div>
+  <nav>
+    <div class="nav-section">Principal</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)">
+      <span class="icon">◈</span> Dashboard
+    </div>
+    <div class="nav-item" onclick="showPage('products',this)">
+      <span class="icon">▦</span> Productos
+      <span class="nav-badge" id="badge-count">—</span>
+    </div>
+
+    <div class="nav-section">Datos</div>
+    <div class="nav-item" onclick="showPage('upload',this)">
+      <span class="icon">↑</span> Importar Excel
+    </div>
+    <div class="nav-item" onclick="showPage('export',this)">
+      <span class="icon">↓</span> Exportar
+    </div>
+
+    <div class="nav-section">Sistema</div>
+    <div class="nav-item" onclick="showPage('api',this)">
+      <span class="icon">⌥</span> API Reference
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="api-status">
+      <div class="status-dot" id="status-dot"></div>
+      <span id="status-text">Conectando...</span>
+    </div>
+    <div style="margin-top:6px">localhost:5000</div>
+  </div>
+</aside>
+
+<!-- ── MAIN ────────────────────────────────────────────────────────────── -->
+<main>
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">Dashboard</div>
+    <div class="topbar-actions">
+      <button class="btn" onclick="showPage('upload',document.querySelector('[onclick*=upload]'))">↑ Importar</button>
+      <button class="btn btn-primary" onclick="openCreateModal()">+ Nuevo producto</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="page active" id="page-dashboard">
+    <div class="stats-row" id="stats-cards">
+      <div class="stat-card"><div class="stat-label">Total objetos</div><div class="stat-val" id="stat-total">—</div></div>
+      <div class="stat-card"><div class="stat-label">Países</div><div class="stat-val" id="stat-countries">—</div></div>
+      <div class="stat-card"><div class="stat-label">Décadas</div><div class="stat-val" id="stat-decades">—</div></div>
+      <div class="stat-card"><div class="stat-label">Industrias</div><div class="stat-val" id="stat-industries">—</div></div>
+    </div>
+
+    <div class="grid-2" style="gap:1.5rem">
+      <div class="table-wrap" style="padding:1.25rem">
+        <div class="section-h">Objetos por país</div>
+        <div class="bar-chart" id="chart-country"></div>
+      </div>
+      <div class="table-wrap" style="padding:1.25rem">
+        <div class="section-h">Objetos por industria</div>
+        <div class="bar-chart" id="chart-industry"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTOS -->
+  <div class="page" id="page-products">
+    <div class="table-wrap">
+      <div class="table-toolbar">
+        <input type="text" id="search-input" placeholder="Buscar por nombre, diseñador..." oninput="loadProducts()">
+        <select id="filter-country" onchange="loadProducts()">
+          <option value="">Todos los países</option>
+        </select>
+        <select id="filter-decade" onchange="loadProducts()">
+          <option value="">Todas las décadas</option>
+        </select>
+        <select id="filter-industry" onchange="loadProducts()">
+          <option value="">Todas las industrias</option>
+        </select>
+        <span style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--fg3)" id="products-count"></span>
+      </div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>ID</th><th>Color</th><th>Nombre</th><th>País</th><th>Período</th>
+            <th>Industria</th><th>Diseñador</th><th>Descripción</th><th style="text-align:right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="products-tbody">
+          <tr><td colspan="9"><div class="empty"><div class="e-icon">⟳</div><p>Cargando...</p></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- UPLOAD -->
+  <div class="page" id="page-upload">
+    <div class="grid-2">
+      <div>
+        <div class="section-h">Subir archivo Excel</div>
+        <div class="drop-zone" id="drop-zone"
+          ondragover="event.preventDefault();this.classList.add('drag')"
+          ondragleave="this.classList.remove('drag')"
+          ondrop="handleDrop(event)"
+          onclick="document.getElementById('file-input').click()">
+          <div class="drop-icon">⌗</div>
+          <p>Arrastrá o hacé clic para seleccionar</p>
+          <small>.xlsx · .xls · .csv — Planilla_HDI / Productos_AL</small>
+        </div>
+        <input type="file" id="file-input" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleFileSelect(this.files[0])">
+        <div class="upload-progress" id="upload-progress">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--fg3);margin-bottom:6px" id="upload-status">Procesando...</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-h">Instrucciones de mapeo</div>
+        <div style="font-size:12px;line-height:1.9;color:var(--fg2)">
+          El sistema detecta automáticamente estas columnas:<br>
+          <div class="col-grid" style="margin-top:8px">
+            <span class="col-tag col-ok">País</span><span class="col-tag col-ok">Década</span>
+            <span class="col-tag col-ok">Producto</span><span class="col-tag col-ok">Tipología</span>
+            <span class="col-tag col-ok">Industria</span><span class="col-tag col-ok">Diseñador</span>
+            <span class="col-tag col-ok">Empresa</span><span class="col-tag col-ok">Análisis</span>
+            <span class="col-tag col-ok">Material</span><span class="col-tag col-ok">Premios</span>
+            <span class="col-tag col-ok">Impacto</span><span class="col-tag col-ok">Masividad</span>
+            <span class="col-tag col-ok">GINI</span><span class="col-tag col-ok">Políticas</span>
+            <span class="col-tag col-ok">Región</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW RESULTADO -->
+    <div id="upload-result" style="display:none;margin-top:1.5rem">
+      <div class="table-wrap" style="padding:1.25rem">
+        <div class="section-h">Resultado del análisis</div>
+        <div class="grid-2" style="margin-bottom:1rem">
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--fg3);margin-bottom:6px">COLUMNAS DETECTADAS</div>
+            <div class="col-grid" id="detected-ok"></div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--fg3);margin-bottom:6px">COLUMNAS NO RECONOCIDAS</div>
+            <div class="col-grid" id="detected-unk"></div>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--fg2);margin-bottom:1rem">
+          Filas detectadas: <strong id="upload-rows">—</strong> ·
+          Archivo: <strong id="upload-filename">—</strong>
+        </div>
+        <div class="section-h">Preview (primeras 5 filas)</div>
+        <div class="preview-table-wrap" id="preview-table-wrap"></div>
+        <div style="display:flex;gap:10px;margin-top:1.25rem;align-items:center">
+          <select id="import-mode" style="padding:7px 10px;font-size:12px;border:0.5px solid var(--border);background:var(--bg);border-radius:2px;color:var(--fg)">
+            <option value="append">Agregar a colección existente</option>
+            <option value="replace">Reemplazar toda la colección</option>
+          </select>
+          <button class="btn btn-primary" onclick="confirmImport()">Confirmar importación</button>
+          <button class="btn" onclick="document.getElementById('upload-result').style.display='none'">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT -->
+  <div class="page" id="page-export">
+    <div class="grid-2">
+      <div class="table-wrap" style="padding:1.5rem">
+        <div class="section-h">Exportar datos</div>
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <div style="padding:1rem;background:var(--bg2);border-radius:2px">
+            <div style="font-weight:500;margin-bottom:4px">JSON completo</div>
+            <div style="font-size:12px;color:var(--fg3);margin-bottom:10px">Todos los campos, formato nativo de la API</div>
+            <a class="btn btn-primary" href="/api/export/json" download>↓ Descargar JSON</a>
+          </div>
+          <div style="padding:1rem;background:var(--bg2);border-radius:2px">
+            <div style="font-weight:500;margin-bottom:4px">Excel (.xlsx)</div>
+            <div style="font-size:12px;color:var(--fg3);margin-bottom:10px">Compatible con Planilla_HDI y Productos_AL</div>
+            <a class="btn btn-success" href="/api/export/excel" download>↓ Descargar Excel</a>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrap" style="padding:1.5rem">
+        <div class="section-h">Estadísticas de exportación</div>
+        <div id="export-stats" style="font-size:13px;color:var(--fg2);line-height:2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API REFERENCE -->
+  <div class="page" id="page-api">
+    <div class="table-wrap" style="padding:1.5rem;max-width:720px">
+      <div class="section-h">Endpoints disponibles</div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:12px">
+        <div id="api-endpoints"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── MODAL CREAR / EDITAR ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Nuevo producto</h2>
+      <button class="modal-close" onclick="closeModal('product-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="edit-id">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Nombre del producto *</label>
+          <input type="text" id="f-name" placeholder="Ej: Estantería Unilabor">
+        </div>
+        <div class="form-group">
+          <label>País</label>
+          <input type="text" id="f-country" placeholder="Brasil">
+        </div>
+        <div class="form-group">
+          <label>Década</label>
+          <input type="text" id="f-decade" placeholder="50-60">
+          <div class="form-hint">Formato: 50-60, 70-80, 90-00</div>
+        </div>
+        <div class="form-group">
+          <label>Industria</label>
+          <input type="text" id="f-industry" placeholder="Metalmecánica">
+        </div>
+        <div class="form-group">
+          <label>Tipología</label>
+          <input type="text" id="f-type" placeholder="Mobiliario">
+        </div>
+        <div class="form-group">
+          <label>Diseñador</label>
+          <input type="text" id="f-designer" placeholder="Geraldo de Barros">
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" id="f-company" placeholder="Unilabor">
+        </div>
+        <div class="form-group">
+          <label>Material</label>
+          <input type="text" id="f-material" placeholder="Metal / Madera">
+        </div>
+        <div class="form-group">
+          <label>Premios</label>
+          <input type="text" id="f-awards" placeholder="Premio IDSA · Mención CIDEM">
+        </div>
+        <div class="form-group">
+          <label>Color de tarjeta</label>
+          <input type="color" id="f-color" value="#C8C0B4">
+        </div>
+        <div class="form-group full">
+          <label>Descripción / Análisis de producto</label>
+          <textarea id="f-desc" placeholder="Descripción detallada del producto, contexto histórico y análisis formal..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label>Impacto en territorio</label>
+          <textarea id="f-impact" style="min-height:60px" placeholder="Describe el impacto sociocultural en su región..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('product-modal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveProduct()">Guardar producto</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL CONFIRMAR BORRADO ──────────────────────────────────────── -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header">
+      <h2>Confirmar eliminación</h2>
+      <button class="modal-close" onclick="closeModal('confirm-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="confirm-text">¿Eliminar <strong id="confirm-name">este producto</strong>? Esta acción no se puede deshacer.</p>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="closeModal('confirm-modal')">Cancelar</button>
+        <button class="btn btn-danger" id="confirm-delete-btn">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST CONTAINER ──────────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<script>
+const API = '';  // mismo origen — cambiar a 'http://localhost:5000' si usás el admin standalone
+
+let pendingImport = null;
+
+// ── Utilidades ─────────────────────────────────────────────────────────────
+async function apiFetch(path, opts={}) {
+  const res = await fetch(API + path, {
+    headers: {'Content-Type':'application/json'},
+    ...opts
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({error: res.statusText}));
+    throw new Error(err.error || 'Error de red');
+  }
+  return res.json();
+}
+
+function toast(msg, type='info') {
+  const icons = {success:'✓', error:'✗', info:'ℹ'};
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span class="t-icon">${icons[type]||'ℹ'}</span> ${msg}`;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const titles = {dashboard:'Dashboard', products:'Productos', upload:'Importar Excel', export:'Exportar', api:'API Reference'};
+  document.getElementById('topbar-title').textContent = titles[id] || id;
+  if (id === 'dashboard') loadDashboard();
+  if (id === 'products') loadProducts();
+  if (id === 'export') loadExportStats();
+  if (id === 'api') renderApiDocs();
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ── Health check ───────────────────────────────────────────────────────────
+async function checkHealth() {
+  try {
+    const d = await apiFetch('/health');
+    document.getElementById('status-dot').className = 'status-dot ok';
+    document.getElementById('status-text').textContent = `API ok (${d.products} obj.)`;
+    document.getElementById('badge-count').textContent = d.products;
+  } catch {
+    document.getElementById('status-dot').className = 'status-dot err';
+    document.getElementById('status-text').textContent = 'Sin conexión';
+  }
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────
+async function loadDashboard() {
+  try {
+    const s = await apiFetch('/api/stats');
+    document.getElementById('stat-total').textContent = s.total;
+    document.getElementById('stat-countries').textContent = Object.keys(s.by_country).length;
+    document.getElementById('stat-decades').textContent = Object.keys(s.by_decade).length;
+    document.getElementById('stat-industries').textContent = Object.keys(s.by_industry).length;
+
+    renderBarChart('chart-country', s.by_country);
+    renderBarChart('chart-industry', s.by_industry);
+  } catch(e) { toast('Error cargando estadísticas: ' + e.message, 'error'); }
+}
+
+function renderBarChart(containerId, data) {
+  const el = document.getElementById(containerId);
+  const sorted = Object.entries(data).sort((a,b) => b[1]-a[1]);
+  const max = sorted[0]?.[1] || 1;
+  el.innerHTML = sorted.map(([label, count]) => `
+    <div class="bar-row">
+      <div class="bar-label" title="${label}">${label}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.round(count/max*100)}%">
+          <span class="bar-count">${count}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ── Productos: listar ─────────────────────────────────────────────────────
+async function loadProducts() {
+  const q = document.getElementById('search-input').value;
+  const country = document.getElementById('filter-country').value;
+  const decade = document.getElementById('filter-decade').value;
+  const industry = document.getElementById('filter-industry').value;
+
+  const params = new URLSearchParams();
+  if (q) params.set('q', q);
+  if (country) params.set('country', country);
+  if (decade) params.set('decade', decade);
+  if (industry) params.set('industry', industry);
+
+  try {
+    const d = await apiFetch('/api/products?' + params);
+    document.getElementById('products-count').textContent = `${d.total} resultado${d.total !== 1 ? 's' : ''}`;
+    renderProductsTable(d.products);
+    populateFilters(d.products);
+  } catch(e) {
+    document.getElementById('products-tbody').innerHTML = `<tr><td colspan="9"><div class="empty"><div class="e-icon">✗</div><p>${e.message}</p></div></td></tr>`;
+  }
+}
+
+function populateFilters(products) {
+  const countries = [...new Set(products.map(p=>p.country).filter(Boolean))].sort();
+  const decades   = [...new Set(products.map(p=>p.decade).filter(Boolean))].sort();
+  const industries= [...new Set(products.map(p=>p.industry).filter(Boolean))].sort();
+
+  const setOpts = (id, vals) => {
+    const el = document.getElementById(id);
+    const cur = el.value;
+    el.innerHTML = `<option value="">— ${el.id.replace('filter-','').replace('-',' ')} —</option>` +
+      vals.map(v => `<option value="${v}" ${v===cur?'selected':''}>${v}</option>`).join('');
+  };
+  setOpts('filter-country', countries);
+  setOpts('filter-decade', decades);
+  setOpts('filter-industry', industries);
+}
+
+function renderProductsTable(products) {
+  const tbody = document.getElementById('products-tbody');
+  if (!products.length) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty"><div class="e-icon">◌</div><p>Sin resultados</p></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = products.map(p => `
+    <tr>
+      <td><span style="font-family:var(--mono);font-size:10px;color:var(--fg3)">#${p.id}</span></td>
+      <td><span class="color-swatch" style="background:${p.color||'#ccc'}"></span></td>
+      <td class="name-col">${escHtml(p.name||'—')}</td>
+      <td><span class="country-pill">${(p.country||'?').substring(0,3).toUpperCase()}</span></td>
+      <td><span class="decade-pill">${p.decade||'—'}</span></td>
+      <td style="color:var(--fg2)">${escHtml(p.industry||'—')}</td>
+      <td style="color:var(--fg3)">${escHtml(p.designer||'—')}</td>
+      <td class="desc-col">${escHtml(p.desc||'')}</td>
+      <td>
+        <div class="actions">
+          <button class="btn btn-sm" onclick="openEditModal(${p.id})">Editar</button>
+          <button class="btn btn-sm btn-danger" onclick="confirmDelete(${p.id},${JSON.stringify(escHtml(p.name||''))})">×</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Crear / Editar ────────────────────────────────────────────────────────
+function openCreateModal() {
+  document.getElementById('modal-title').textContent = 'Nuevo producto';
+  document.getElementById('edit-id').value = '';
+  ['name','country','decade','industry','type','designer','company','material','awards','desc','impact']
+    .forEach(f => document.getElementById('f-'+f).value = '');
+  document.getElementById('f-color').value = '#C8C0B4';
+  openModal('product-modal');
+}
+
+async function openEditModal(id) {
+  try {
+    const p = await apiFetch('/api/products/' + id);
+    document.getElementById('modal-title').textContent = 'Editar producto';
+    document.getElementById('edit-id').value = p.id;
+    const fields = ['name','country','decade','industry','type','designer','company','material','awards','desc','impact'];
+    fields.forEach(f => { const el = document.getElementById('f-'+f); if(el) el.value = p[f] || ''; });
+    document.getElementById('f-color').value = p.color || '#C8C0B4';
+    openModal('product-modal');
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+async function saveProduct() {
+  const id = document.getElementById('edit-id').value;
+  const body = {
+    name: document.getElementById('f-name').value.trim(),
+    country: document.getElementById('f-country').value.trim(),
+    decade: document.getElementById('f-decade').value.trim(),
+    industry: document.getElementById('f-industry').value.trim(),
+    type: document.getElementById('f-type').value.trim(),
+    designer: document.getElementById('f-designer').value.trim(),
+    company: document.getElementById('f-company').value.trim(),
+    material: document.getElementById('f-material').value.trim(),
+    awards: document.getElementById('f-awards').value.trim(),
+    desc: document.getElementById('f-desc').value.trim(),
+    impact: document.getElementById('f-impact').value.trim(),
+    color: document.getElementById('f-color').value,
+  };
+  if (!body.name) { toast('El nombre es requerido', 'error'); return; }
+  try {
+    if (id) {
+      await apiFetch('/api/products/' + id, {method:'PUT', body:JSON.stringify(body)});
+      toast('Producto actualizado', 'success');
+    } else {
+      await apiFetch('/api/products', {method:'POST', body:JSON.stringify(body)});
+      toast('Producto creado', 'success');
+    }
+    closeModal('product-modal');
+    loadProducts();
+    checkHealth();
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+// ── Borrar ────────────────────────────────────────────────────────────────
+function confirmDelete(id, name) {
+  document.getElementById('confirm-name').textContent = name;
+  document.getElementById('confirm-delete-btn').onclick = () => deleteProduct(id);
+  openModal('confirm-modal');
+}
+
+async function deleteProduct(id) {
+  try {
+    await apiFetch('/api/products/' + id, {method:'DELETE'});
+    toast('Producto eliminado', 'success');
+    closeModal('confirm-modal');
+    loadProducts();
+    checkHealth();
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+// ── Upload Excel ──────────────────────────────────────────────────────────
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('drop-zone').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processFile(file);
+}
+function handleFileSelect(file) { if (file) processFile(file); }
+
+async function processFile(file) {
+  const progress = document.getElementById('upload-progress');
+  const fill = document.getElementById('progress-fill');
+  const status = document.getElementById('upload-status');
+  progress.style.display = 'block';
+  status.textContent = 'Subiendo archivo...';
+  fill.style.width = '30%';
+
+  const fd = new FormData();
+  fd.append('file', file);
+
+  try {
+    fill.style.width = '60%';
+    status.textContent = 'Analizando columnas...';
+    const res = await fetch(API + '/api/upload/excel', {method:'POST', body:fd});
+    const d = await res.json();
+    fill.style.width = '100%';
+    if (!res.ok) throw new Error(d.error);
+    status.textContent = `✓ ${d.rows} filas detectadas`;
+    pendingImport = d;
+    renderUploadResult(d);
+    toast(`Excel analizado: ${d.rows} filas, ${Object.keys(d.detected_columns).length} columnas mapeadas`, 'success');
+  } catch(e) {
+    fill.style.width = '0';
+    status.textContent = 'Error: ' + e.message;
+    toast('Error procesando archivo: ' + e.message, 'error');
+  }
+}
+
+function renderUploadResult(d) {
+  const wrap = document.getElementById('upload-result');
+  wrap.style.display = 'block';
+  document.getElementById('upload-rows').textContent = d.rows;
+  document.getElementById('upload-filename').textContent = d.filename;
+
+  const okDiv = document.getElementById('detected-ok');
+  const unkDiv = document.getElementById('detected-unk');
+  okDiv.innerHTML = Object.keys(d.detected_columns).map(c=>`<span class="col-tag col-ok">${c} → ${d.detected_columns[c]}</span>`).join('');
+  unkDiv.innerHTML = (d.unknown_columns.length ? d.unknown_columns : ['(ninguna)']).map(c=>`<span class="col-tag col-unk">${c}</span>`).join('');
+
+  // preview table
+  if (d.preview && d.preview.length) {
+    const cols = Object.keys(d.preview[0]).filter(k => k !== 'id');
+    const table = `<table class="tbl" style="font-size:11px">
+      <thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${d.preview.map(r => `<tr>${cols.map(c=>`<td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(r[c]||'')}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table>`;
+    document.getElementById('preview-table-wrap').innerHTML = table;
+  }
+}
+
+async function confirmImport() {
+  if (!pendingImport) return;
+  const mode = document.getElementById('import-mode').value;
+  try {
+    const d = await apiFetch('/api/upload/confirm', {
+      method:'POST',
+      body: JSON.stringify({products: pendingImport.import_ready, mode})
+    });
+    toast(`✓ ${d.imported} productos importados. Total: ${d.total}`, 'success');
+    document.getElementById('upload-result').style.display = 'none';
+    document.getElementById('upload-progress').style.display = 'none';
+    pendingImport = null;
+    checkHealth();
+  } catch(e) { toast('Error importando: ' + e.message, 'error'); }
+}
+
+// ── Export stats ──────────────────────────────────────────────────────────
+async function loadExportStats() {
+  try {
+    const s = await apiFetch('/api/stats');
+    document.getElementById('export-stats').innerHTML = `
+      Total: <strong>${s.total} objetos</strong><br>
+      Países: <strong>${Object.keys(s.by_country).join(', ')}</strong><br>
+      Industrias: <strong>${Object.keys(s.by_industry).join(', ')}</strong><br>
+      Décadas: <strong>${Object.keys(s.by_decade).join(', ')}</strong>`;
+  } catch {}
+}
+
+// ── API docs ──────────────────────────────────────────────────────────────
+function renderApiDocs() {
+  const endpoints = [
+    {method:'GET',    path:'/api/products',         desc:'Lista productos. Params: q, country, decade, industry'},
+    {method:'GET',    path:'/api/products/:id',     desc:'Obtiene un producto por ID'},
+    {method:'POST',   path:'/api/products',         desc:'Crea nuevo producto (JSON body)'},
+    {method:'PUT',    path:'/api/products/:id',     desc:'Actualiza producto (JSON body completo)'},
+    {method:'DELETE', path:'/api/products/:id',     desc:'Elimina un producto'},
+    {method:'GET',    path:'/api/meta',             desc:'Países, décadas, industrias disponibles'},
+    {method:'GET',    path:'/api/stats',            desc:'Estadísticas: totales por país, industria, década'},
+    {method:'POST',   path:'/api/upload/excel',     desc:'Sube y analiza un archivo Excel (multipart/form-data)'},
+    {method:'POST',   path:'/api/upload/confirm',   desc:'Confirma importación masiva desde Excel'},
+    {method:'GET',    path:'/api/export/json',      desc:'Descarga la colección completa como JSON'},
+    {method:'GET',    path:'/api/export/excel',     desc:'Descarga la colección completa como Excel'},
+    {method:'GET',    path:'/health',               desc:'Estado de la API'},
+  ];
+  const colors = {GET:'#3B7A4A', POST:'#854F0B', PUT:'#185FA5', DELETE:'#A32D2D'};
+  document.getElementById('api-endpoints').innerHTML = endpoints.map(e => `
+    <div style="display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:0.5px solid var(--border)">
+      <span style="font-family:var(--mono);font-size:10px;color:${colors[e.method]||'#888'};min-width:52px;padding-top:1px">${e.method}</span>
+      <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:2px 8px;border-radius:2px;color:var(--fg);flex-shrink:0">${e.path}</code>
+      <span style="color:var(--fg3);font-size:12px">${e.desc}</span>
+    </div>`).join('');
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+checkHealth();
+loadDashboard();
+setInterval(checkHealth, 15000);
+</script>
+</body>
+</html>

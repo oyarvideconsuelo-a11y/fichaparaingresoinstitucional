@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Ficha Institucional — Archivo Diseño Latinoamericano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400;700&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F7F3EE;
+  --ink:#1C1A17;
+  --ink2:#4A4640;
+  --ink3:#8C8780;
+  --rule:#D8D2CA;
+  --accent:#8B1A1A;
+  --accent-soft:#F2E8E8;
+  --success:#2D6A4F;
+  --success-soft:#E8F4EF;
+  --warn:#8B5E1A;
+  --warn-soft:#F7F0E6;
+  --card:#FDFBF8;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Lato',sans-serif;
+  --mono:'Courier Prime',monospace;
+  --max-w:780px;
+  --transition:0.2s ease;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  min-height:100vh;
+}
+
+/* ── Masthead ─────────────────────────────────────────────────────────────── */
+.masthead{
+  background:var(--ink);
+  color:var(--paper);
+  padding:0;
+  border-bottom:3px solid var(--accent);
+}
+.masthead-inner{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:2.5rem 2rem 2rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;
+  align-items:end;
+}
+.masthead-tag{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:0.5rem;
+  display:block;
+}
+.masthead h1{
+  font-family:var(--serif);
+  font-size:clamp(22px,4vw,34px);
+  font-weight:400;
+  line-height:1.15;
+  color:var(--paper);
+}
+.masthead h1 em{
+  font-style:italic;
+  color:rgba(247,243,238,0.65);
+  display:block;
+  font-size:0.75em;
+  margin-top:2px;
+}
+.masthead-num{
+  text-align:right;
+  font-family:var(--mono);
+  font-size:11px;
+  color:rgba(247,243,238,0.4);
+  line-height:1.8;
+}
+.masthead-num strong{
+  display:block;
+  font-size:32px;
+  font-weight:400;
+  color:rgba(247,243,238,0.15);
+  line-height:1;
+  letter-spacing:-0.02em;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+.wrapper{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:0 2rem 5rem;
+}
+
+/* ── Intro strip ────────────────────────────────────────────────────────── */
+.intro{
+  border-left:3px solid var(--accent);
+  padding:1rem 1.25rem;
+  margin:2.5rem 0 2rem;
+  background:var(--card);
+  border-radius:0 2px 2px 0;
+}
+.intro p{font-size:13px;color:var(--ink2);line-height:1.8}
+.intro p+p{margin-top:0.5rem}
+.intro strong{color:var(--ink);font-weight:700}
+
+/* ── Privacy notice ─────────────────────────────────────────────────────── */
+.privacy-notice{
+  background:var(--accent-soft);
+  border:0.5px solid #D4AAAA;
+  border-radius:2px;
+  padding:0.875rem 1.1rem;
+  margin-bottom:2.5rem;
+  display:flex;
+  gap:0.75rem;
+  align-items:flex-start;
+}
+.privacy-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.privacy-notice p{font-size:12px;color:var(--accent);line-height:1.7}
+.privacy-notice a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+/* ── Section ─────────────────────────────────────────────────────────────── */
+.section{
+  margin-bottom:2.5rem;
+  border:0.5px solid var(--rule);
+  border-radius:2px;
+  background:var(--card);
+  overflow:hidden;
+}
+.section-head{
+  background:var(--ink);
+  color:var(--paper);
+  padding:0.7rem 1.25rem;
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.section-num{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--accent);
+  letter-spacing:0.1em;
+  width:28px;
+  flex-shrink:0;
+}
+.section-head h2{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--paper);
+}
+.section-body{padding:1.5rem 1.25rem}
+
+/* ── Form elements ──────────────────────────────────────────────────────── */
+.field{margin-bottom:1.25rem}
+.field:last-child{margin-bottom:0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+label{
+  display:block;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink3);
+  margin-bottom:5px;
+}
+label .req{color:var(--accent);margin-left:2px}
+label .opt{font-family:var(--sans);font-size:10px;font-style:italic;color:var(--ink3);margin-left:4px;text-transform:none;letter-spacing:0}
+input[type=text],
+input[type=number],
+select,
+textarea{
+  width:100%;
+  background:#FEFCFA;
+  border:0.5px solid var(--rule);
+  border-radius:2px;
+  padding:9px 11px;
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:300;
+  color:var(--ink);
+  transition:border-color var(--transition), box-shadow var(--transition);
+  appearance:none;
+}
+input[type=text]:focus,
+input[type=number]:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--ink);
+  box-shadow:0 0 0 2px rgba(28,26,23,0.08);
+}
+input[type=text].error,
+input[type=number].error,
+select.error,
+textarea.error{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' fill='none'%3E%3Cpath stroke='%238C8780' stroke-width='1.4' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 11px center;
+  padding-right:32px;
+  cursor:pointer;
+}
+textarea{resize:vertical;min-height:110px;line-height:1.6}
+.field-hint{
+  font-size:11px;
+  color:var(--ink3);
+  margin-top:4px;
+  line-height:1.5;
+}
+.field-error{
+  font-size:11px;
+  color:var(--accent);
+  margin-top:4px;
+  font-weight:400;
+  display:none;
+}
+.field-error.visible{display:block}
+.char-count{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ink3);
+  text-align:right;
+  margin-top:3px;
+}
+.char-count.near{color:var(--warn)}
+.char-count.over{color:var(--accent)}
+
+/* ── Tipo selector custom ───────────────────────────────────────────────── */
+.tipo-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0.75rem;
+  margin-top:2px;
+}
+.tipo-opt{position:relative}
+.tipo-opt input[type=radio]{
+  position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;
+}
+.tipo-card{
+  border:0.5px solid var(--rule);
+  border-radius:2px;
+  padding:0.875rem 1rem;
+  cursor:pointer;
+  transition:border-color var(--transition),background var(--transition);
+  background:#FEFCFA;
+}
+.tipo-card .t-label{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink3);
+  margin-bottom:4px;
+}
+.tipo-card .t-name{
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink2);
+  line-height:1.3;
+}
+.tipo-card .t-desc{
+  font-size:11px;
+  color:var(--ink3);
+  margin-top:3px;
+  line-height:1.4;
+}
+.tipo-opt input:checked + .tipo-card{
+  border-color:var(--ink);
+  background:var(--ink);
+}
+.tipo-opt input:checked + .tipo-card .t-label{color:var(--accent)}
+.tipo-opt input:checked + .tipo-card .t-name{color:var(--paper)}
+.tipo-opt input:checked + .tipo-card .t-desc{color:rgba(247,243,238,0.55)}
+
+/* ── Image upload zones ─────────────────────────────────────────────────── */
+.img-categories{display:flex;flex-direction:column;gap:1.25rem}
+.img-category{border:0.5px solid var(--rule);border-radius:2px;overflow:hidden}
+.img-cat-head{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+  padding:0.65rem 1rem;
+  background:var(--paper);
+  border-bottom:0.5px solid var(--rule);
+}
+.priority-badge{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--ink);color:var(--accent);
+  font-family:var(--mono);font-size:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-weight:500;
+}
+.priority-badge.p2{background:var(--ink2)}
+.priority-badge.p3{background:var(--ink3)}
+.priority-badge.p4{background:var(--rule);color:var(--ink3)}
+.img-cat-name{
+  font-family:var(--sans);font-size:12px;font-weight:700;
+  letter-spacing:0.04em;color:var(--ink);
+}
+.img-cat-name span{
+  display:block;font-size:10px;font-weight:300;color:var(--ink3);
+  letter-spacing:0;margin-top:1px;
+}
+.img-cat-count{
+  margin-left:auto;
+  font-family:var(--mono);font-size:10px;color:var(--ink3);
+}
+
+.drop-zone{
+  padding:1.25rem;
+  min-height:90px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;
+  border:1.5px dashed var(--rule);
+  margin:1rem;
+  border-radius:2px;
+  cursor:pointer;
+  transition:border-color var(--transition),background var(--transition);
+  text-align:center;
+}
+.drop-zone:hover,.drop-zone.drag-over{
+  border-color:var(--ink);
+  background:rgba(28,26,23,0.03);
+}
+.drop-zone-icon{font-size:20px;opacity:0.4}
+.drop-zone p{font-size:12px;color:var(--ink3)}
+.drop-zone small{font-family:var(--mono);font-size:10px;color:var(--rule);margin-top:2px}
+.hidden-input{display:none}
+
+.thumbs{
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding:0 1rem 1rem;
+}
+.thumb{
+  position:relative;
+  width:72px;height:72px;
+  border:0.5px solid var(--rule);
+  border-radius:2px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb-remove{
+  position:absolute;top:2px;right:2px;
+  width:18px;height:18px;border-radius:50%;
+  background:rgba(28,26,23,0.75);color:#fff;
+  border:none;font-size:11px;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+
+/* ── Policy modal ────────────────────────────────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(28,26,23,0.6);
+  z-index:500;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--card);
+  border:0.5px solid var(--rule);
+  border-radius:2px;
+  max-width:560px;width:100%;
+  max-height:85vh;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.modal-hd{
+  background:var(--ink);
+  color:var(--paper);
+  padding:1.1rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.modal-hd h2{font-family:var(--serif);font-size:18px;font-weight:400}
+.modal-close{
+  background:none;border:none;color:rgba(247,243,238,0.5);
+  font-size:20px;cursor:pointer;line-height:1;padding:0;
+}
+.modal-close:hover{color:var(--paper)}
+.modal-body{padding:1.5rem;overflow-y:auto;font-size:13px;line-height:1.8;color:var(--ink2)}
+.modal-body h3{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:0.5rem;margin-top:1.25rem;
+}
+.modal-body h3:first-child{margin-top:0}
+.modal-body ul{padding-left:1.25rem;margin-bottom:0.5rem}
+.modal-body li{margin-bottom:3px}
+.modal-body .good{color:var(--success)}
+.modal-body .bad{color:var(--accent)}
+
+/* ── Submit bar ─────────────────────────────────────────────────────────── */
+.submit-bar{
+  background:var(--ink);
+  padding:1.5rem 2rem;
+  display:flex;
+  align-items:center;
+  gap:1.25rem;
+  flex-wrap:wrap;
+}
+.submit-bar-inner{
+  max-width:var(--max-w);
+  margin:0 auto;
+  width:100%;
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+}
+.consent-wrap{display:flex;align-items:flex-start;gap:10px;flex:1}
+.consent-wrap input[type=checkbox]{
+  width:16px;height:16px;margin-top:2px;cursor:pointer;accent-color:var(--accent);flex-shrink:0;
+}
+.consent-wrap label{
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:300;
+  color:rgba(247,243,238,0.7);
+  text-transform:none;
+  letter-spacing:0;
+  line-height:1.5;
+  cursor:pointer;
+}
+.consent-wrap label a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.btn-submit{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 28px;
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  border-radius:2px;
+  cursor:pointer;
+  transition:background var(--transition);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.btn-submit:hover:not(:disabled){background:#6E1414}
+.btn-submit:disabled{background:var(--ink3);cursor:not-allowed}
+.btn-submit.loading::after{content:' …'}
+
+/* ── Success state ──────────────────────────────────────────────────────── */
+#success-screen{
+  display:none;
+  max-width:var(--max-w);
+  margin:4rem auto;
+  padding:0 2rem;
+  text-align:center;
+}
+#success-screen.visible{display:block}
+.success-icon{font-size:48px;margin-bottom:1rem}
+#success-screen h2{font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:0.75rem}
+#success-screen p{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:1rem}
+.ref-code{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--accent);
+  font-family:var(--mono);
+  font-size:16px;
+  padding:8px 20px;
+  border-radius:2px;
+  letter-spacing:0.12em;
+  margin:0.5rem 0 1.5rem;
+}
+.btn-new{
+  background:none;
+  border:0.5px solid var(--ink);
+  color:var(--ink);
+  padding:10px 24px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  border-radius:2px;
+  cursor:pointer;
+  transition:all var(--transition);
+}
+.btn-new:hover{background:var(--ink);color:var(--paper)}
+
+/* ── Error alert ─────────────────────────────────────────────────────────── */
+.alert{
+  padding:0.875rem 1.1rem;
+  border-radius:2px;
+  font-size:13px;
+  margin-bottom:1.25rem;
+  display:none;
+}
+.alert.visible{display:block}
+.alert-error{background:var(--accent-soft);border:0.5px solid #D4AAAA;color:var(--accent)}
+.alert-success{background:var(--success-soft);border:0.5px solid #A8D4BC;color:var(--success)}
+
+/* ── Progress bar ─────────────────────────────────────────────────────────── */
+.progress-bar{
+  height:2px;
+  background:var(--rule);
+  border-radius:1px;
+  overflow:hidden;
+  margin-bottom:2rem;
+}
+.progress-fill{
+  height:100%;
+  background:var(--accent);
+  width:0;
+  transition:width 0.4s ease;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+footer{
+  background:var(--ink);
+  color:rgba(247,243,238,0.35);
+  padding:1.5rem 2rem;
+  font-family:var(--mono);
+  font-size:10px;
+  text-align:center;
+  letter-spacing:0.06em;
+  line-height:2;
+}
+footer a{color:rgba(247,243,238,0.4);text-decoration:none}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media(max-width:600px){
+  .masthead-inner{grid-template-columns:1fr}
+  .masthead-num{display:none}
+  .field-row,.field-row-3,.tipo-grid{grid-template-columns:1fr}
+  .submit-bar-inner{flex-direction:column;align-items:stretch}
+  .btn-submit{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── MASTHEAD ───────────────────────────────────────────────────────────── -->
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <div>
+      <span class="masthead-tag">Formulario de registro</span>
+      <h1>Ficha Institucional
+        <em>Archivo Diseño Latinoamericano</em>
+      </h1>
+    </div>
+    <div class="masthead-num">
+      <strong>01</strong>
+      Ficha única<br>de ingreso
+    </div>
+  </div>
+</header>
+
+<!-- ── CONTENIDO ─────────────────────────────────────────────────────────── -->
+<div class="wrapper" role="main">
+
+  <!-- Intro -->
+  <div class="intro" role="note">
+    <p>Este formulario permite registrar instituciones vinculadas al diseño industrial latinoamericano en el archivo histórico del proyecto. <strong>Solo ingresás datos sobre la institución</strong>, no sobre vos.</p>
+    <p>Campos marcados con <span style="color:var(--accent)">*</span> son obligatorios. Tu ficha quedará en revisión hasta ser publicada.</p>
+  </div>
+
+  <!-- Aviso de privacidad -->
+  <div class="privacy-notice" role="note" aria-label="Política de privacidad resumida">
+    <span class="privacy-icon" aria-hidden="true">⊕</span>
+    <p><strong>Privacidad:</strong> No almacenamos tu nombre, correo ni dirección IP. Solo se registran los datos de la institución que describís. <a href="#" onclick="openPolicy();return false">Leer política completa</a>.</p>
+  </div>
+
+  <!-- FORMULARIO -->
+  <form id="ficha-form" novalidate>
+    <input type="hidden" id="csrf-token" name="_csrf_token">
+
+    <!-- Progreso -->
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso del formulario">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <!-- ── Sección 1: Identificación ──────────────────────────────────── -->
+    <div class="section" id="sec-1">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>Identificación de la institución</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="field">
+          <label for="nombre">Nombre de la institución <span class="req">*</span></label>
+          <input type="text" id="nombre" name="nombre" maxlength="200"
+            placeholder="Ej: Museo de Arte Moderno de Bogotá"
+            autocomplete="off" spellcheck="false">
+          <div class="field-error" id="err-nombre"></div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="pais">País <span class="req">*</span></label>
+            <select id="pais" name="pais">
+              <option value="">— Seleccionar —</option>
+              <optgroup label="América del Sur">
+                <option>Argentina</option><option>Bolivia</option><option>Brasil</option>
+                <option>Chile</option><option>Colombia</option><option>Ecuador</option>
+                <option>Paraguay</option><option>Perú</option><option>Uruguay</option>
+                <option>Venezuela</option>
+              </optgroup>
+              <optgroup label="América Central y Caribe">
+                <option>Costa Rica</option><option>Cuba</option><option>El Salvador</option>
+                <option>Guatemala</option><option>Honduras</option><option>México</option>
+                <option>Nicaragua</option><option>Panamá</option><option>Puerto Rico</option>
+                <option>República Dominicana</option>
+              </optgroup>
+              <optgroup label="Otro">
+                <option>Otro / No listado</option>
+              </optgroup>
+            </select>
+            <div class="field-error" id="err-pais"></div>
+          </div>
+          <div class="field">
+            <label>Años de actividad <span class="req">*</span></label>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
+              <input type="number" id="anio_desde" name="anio_desde"
+                min="1800" max="2030" placeholder="Desde" style="text-align:center">
+              <span style="color:var(--ink3);font-family:var(--mono);font-size:12px">—</span>
+              <input type="number" id="anio_hasta" name="anio_hasta"
+                min="1800" max="2030" placeholder="Hasta (opt.)">
+            </div>
+            <div class="field-hint">Dejá "Hasta" vacío si la institución sigue activa</div>
+            <div class="field-error" id="err-anio"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sección 2: Tipo institucional ──────────────────────────────── -->
+    <div class="section" id="sec-2">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>Tipo institucional</h2>
+      </div>
+      <div class="section-body">
+        <label>Categoría <span class="req">*</span></label>
+        <div class="tipo-grid" role="radiogroup" aria-label="Tipo de institución">
+
+          <label class="tipo-opt">
+            <input type="radio" name="tipo" value="gubernamental">
+            <div class="tipo-card">
+              <div class="t-label">01</div>
+              <div class="t-name">Gubernamental</div>
+              <div class="t-desc">Estatal, municipal o nacional. Financiamiento público.</div>
+            </div>
+          </label>
+
+          <label class="tipo-opt">
+            <input type="radio" name="tipo" value="privada_comercial">
+            <div class="tipo-card">
+              <div class="t-label">02</div>
+              <div class="t-name">Privada / Comercial</div>
+              <div class="t-desc">Empresa, fundación privada o institución con fines comerciales.</div>
+            </div>
+          </label>
+
+          <label class="tipo-opt">
+            <input type="radio" name="tipo" value="tercer_sector">
+            <div class="tipo-card">
+              <div class="t-label">03</div>
+              <div class="t-name">Tercer sector</div>
+              <div class="t-desc">ONG, asociación civil, cooperativa o colectivo sin fines de lucro.</div>
+            </div>
+          </label>
+
+        </div>
+        <div class="field-error" id="err-tipo" style="margin-top:8px"></div>
+      </div>
+    </div>
+
+    <!-- ── Sección 3: Descripción institucional ───────────────────────── -->
+    <div class="section" id="sec-3">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>Descripción institucional</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="field">
+          <label for="descripcion">Descripción general <span class="req">*</span></label>
+          <textarea id="descripcion" name="descripcion" maxlength="8000"
+            placeholder="Describí brevemente la institución: su misión, alcance geográfico, relevancia para el diseño latinoamericano…"
+            rows="5" oninput="updateCharCount(this,'cc-descripcion',8000)"></textarea>
+          <div class="char-count" id="cc-descripcion">0 / 8000</div>
+          <div class="field-error" id="err-descripcion"></div>
+        </div>
+
+        <div class="field">
+          <label for="historia">Historia <span class="opt">(opcional)</span></label>
+          <textarea id="historia" name="historia" maxlength="3000"
+            placeholder="Orígenes, fundadores, hitos históricos, evolución a lo largo del tiempo…"
+            rows="4" oninput="updateCharCount(this,'cc-historia',3000)"></textarea>
+          <div class="char-count" id="cc-historia">0 / 3000</div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="funcionamiento">Funcionamiento institucional <span class="opt">(opcional)</span></label>
+            <textarea id="funcionamiento" name="funcionamiento" maxlength="3000"
+              placeholder="Estructura organizacional, áreas, equipos, programas permanentes…"
+              rows="4" oninput="updateCharCount(this,'cc-func',3000)"></textarea>
+            <div class="char-count" id="cc-func">0 / 3000</div>
+          </div>
+          <div class="field">
+            <label for="financiamiento">Tipo de financiamiento <span class="opt">(opcional)</span></label>
+            <textarea id="financiamiento" name="financiamiento" maxlength="2000"
+              placeholder="Fuentes de financiamiento: estatal, privado, mixto, cooperación internacional, membresías…"
+              rows="4" oninput="updateCharCount(this,'cc-fin',2000)"></textarea>
+            <div class="char-count" id="cc-fin">0 / 2000</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="logicas_inter">Lógicas de funcionamiento inter-institucional <span class="opt">(opcional)</span></label>
+          <textarea id="logicas_inter" name="logicas_inter" maxlength="2000"
+            placeholder="Vínculos, convenios, redes o relaciones con otras instituciones, universidades, museos, empresas…"
+            rows="3" oninput="updateCharCount(this,'cc-inter',2000)"></textarea>
+          <div class="char-count" id="cc-inter">0 / 2000</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sección 4: Imágenes ────────────────────────────────────────── -->
+    <div class="section" id="sec-4">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2>Imágenes institucionales</h2>
+      </div>
+      <div class="section-body">
+
+        <p style="font-size:12px;color:var(--ink3);margin-bottom:1.25rem;line-height:1.7">
+          Las imágenes se organizan en cuatro jerarquías. Solo se aceptan formatos JPG, PNG o WebP de hasta 8MB por imagen. Las imágenes se reencoden en el servidor eliminando metadatos.
+        </p>
+
+        <div class="img-categories">
+
+          <!-- PRIORIDAD 1: Edificio -->
+          <div class="img-category">
+            <div class="img-cat-head">
+              <div class="priority-badge">1</div>
+              <div class="img-cat-name">
+                Edificio
+                <span>Interior y exterior — hasta 10 imágenes</span>
+              </div>
+              <span class="img-cat-count" id="count-edificio">0 / 10</span>
+            </div>
+            <div class="drop-zone" id="dz-edificio"
+              ondragover="dzDragOver(event,'edificio')"
+              ondragleave="dzDragLeave('edificio')"
+              ondrop="dzDrop(event,'edificio')"
+              onclick="document.getElementById('inp-edificio').click()"
+              role="button" tabindex="0" aria-label="Subir imágenes del edificio"
+              onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('inp-edificio').click()">
+              <span class="drop-zone-icon" aria-hidden="true">⌒</span>
+              <p>Arrastrá o hacé clic</p>
+              <small>JPG · PNG · WebP · Máx 8MB c/u</small>
+            </div>
+            <input type="file" id="inp-edificio" name="img_edificio" class="hidden-input"
+              accept=".jpg,.jpeg,.png,.webp" multiple onchange="handleFiles(this,'edificio')">
+            <div class="thumbs" id="thumbs-edificio"></div>
+            <div class="field-error" id="err-img-edificio" style="padding:0 1rem 0.5rem"></div>
+          </div>
+
+          <!-- PRIORIDAD 2: Logotipo -->
+          <div class="img-category">
+            <div class="img-cat-head">
+              <div class="priority-badge p2">2</div>
+              <div class="img-cat-name">
+                Logotipo
+                <span>Identidad institucional — hasta 5 imágenes</span>
+              </div>
+              <span class="img-cat-count" id="count-logotipo">0 / 5</span>
+            </div>
+            <div class="drop-zone" id="dz-logotipo"
+              ondragover="dzDragOver(event,'logotipo')"
+              ondragleave="dzDragLeave('logotipo')"
+              ondrop="dzDrop(event,'logotipo')"
+              onclick="document.getElementById('inp-logotipo').click()"
+              role="button" tabindex="0" aria-label="Subir logotipo institucional"
+              onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('inp-logotipo').click()">
+              <span class="drop-zone-icon" aria-hidden="true">◎</span>
+              <p>Arrastrá o hacé clic</p>
+              <small>JPG · PNG · WebP · Máx 8MB c/u</small>
+            </div>
+            <input type="file" id="inp-logotipo" name="img_logotipo" class="hidden-input"
+              accept=".jpg,.jpeg,.png,.webp" multiple onchange="handleFiles(this,'logotipo')">
+            <div class="thumbs" id="thumbs-logotipo"></div>
+            <div class="field-error" id="err-img-logotipo" style="padding:0 1rem 0.5rem"></div>
+          </div>
+
+          <!-- PRIORIDAD 3: Exposición -->
+          <div class="img-category">
+            <div class="img-cat-head">
+              <div class="priority-badge p3">3</div>
+              <div class="img-cat-name">
+                Exposición o muestra
+                <span>Salas, montajes, inauguraciones — hasta 10 imágenes</span>
+              </div>
+              <span class="img-cat-count" id="count-exposicion">0 / 10</span>
+            </div>
+            <div class="drop-zone" id="dz-exposicion"
+              ondragover="dzDragOver(event,'exposicion')"
+              ondragleave="dzDragLeave('exposicion')"
+              ondrop="dzDrop(event,'exposicion')"
+              onclick="document.getElementById('inp-exposicion').click()"
+              role="button" tabindex="0" aria-label="Subir imágenes de exposiciones"
+              onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('inp-exposicion').click()">
+              <span class="drop-zone-icon" aria-hidden="true">⊞</span>
+              <p>Arrastrá o hacé clic</p>
+              <small>JPG · PNG · WebP · Máx 8MB c/u</small>
+            </div>
+            <input type="file" id="inp-exposicion" name="img_exposicion" class="hidden-input"
+              accept=".jpg,.jpeg,.png,.webp" multiple onchange="handleFiles(this,'exposicion')">
+            <div class="thumbs" id="thumbs-exposicion"></div>
+            <div class="field-error" id="err-img-exposicion" style="padding:0 1rem 0.5rem"></div>
+          </div>
+
+          <!-- ADICIONAL -->
+          <div class="img-category" style="border-style:dashed">
+            <div class="img-cat-head" style="background:transparent">
+              <div class="priority-badge p4">+</div>
+              <div class="img-cat-name" style="color:var(--ink3)">
+                Imágenes adicionales
+                <span>Cualquier otra imagen relevante — hasta 20</span>
+              </div>
+              <span class="img-cat-count" id="count-adicional">0 / 20</span>
+            </div>
+            <div class="drop-zone" id="dz-adicional"
+              ondragover="dzDragOver(event,'adicional')"
+              ondragleave="dzDragLeave('adicional')"
+              ondrop="dzDrop(event,'adicional')"
+              onclick="document.getElementById('inp-adicional').click()"
+              role="button" tabindex="0" aria-label="Subir imágenes adicionales"
+              onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('inp-adicional').click()">
+              <span class="drop-zone-icon" aria-hidden="true">⊕</span>
+              <p>Arrastrá o hacé clic</p>
+              <small>JPG · PNG · WebP · Máx 8MB c/u</small>
+            </div>
+            <input type="file" id="inp-adicional" name="img_adicional" class="hidden-input"
+              accept=".jpg,.jpeg,.png,.webp" multiple onchange="handleFiles(this,'adicional')">
+            <div class="thumbs" id="thumbs-adicional"></div>
+            <div class="field-error" id="err-img-adicional" style="padding:0 1rem 0.5rem"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerta global -->
+    <div class="alert alert-error" id="global-error" role="alert"></div>
+
+    <!-- Barra de envío -->
+    <div class="submit-bar">
+      <div class="submit-bar-inner">
+        <div class="consent-wrap">
+          <input type="checkbox" id="consent" name="consent">
+          <label for="consent">
+            Confirmo que los datos ingresados describen una institución real y
+            consiento su uso según la <a href="#" onclick="openPolicy();return false">política de privacidad</a>.
+          </label>
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn" disabled>
+          Enviar ficha
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- ── Pantalla de éxito ──────────────────────────────────────────────── -->
+  <div id="success-screen" role="status" aria-live="polite">
+    <div class="success-icon" aria-hidden="true">✦</div>
+    <h2>Ficha recibida</h2>
+    <p>Tu ficha institucional fue enviada correctamente y está en cola de revisión.<br>
+    Guardá este código de referencia para consultar el estado:</p>
+    <div class="ref-code" id="ref-code">—</div>
+    <p style="font-size:12px;color:var(--ink3)">Una vez aprobada, la institución aparecerá en el archivo público.</p>
+    <br>
+    <button class="btn-new" onclick="resetForm()">Ingresar otra institución</button>
+  </div>
+
+</div><!-- /wrapper -->
+
+<!-- ── POLÍTICA MODAL ─────────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="policy-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+  <div class="modal">
+    <div class="modal-hd">
+      <h2 id="modal-heading">Política de privacidad</h2>
+      <button class="modal-close" onclick="closePolicy()" aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body" id="policy-content">
+      <p>Cargando política…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <p>Archivo Diseño Latinoamericano · Formulario de ingreso institucional</p>
+  <p>Los datos enviados son de uso exclusivo del archivo histórico · Sin tracking · Sin cookies</p>
+</footer>
+
+<script>
+"use strict";
+
+// ── Config ───────────────────────────────────────────────────────────────────
+const API_BASE = '';   // mismo origen; cambiar a 'http://localhost:5000' si es standalone
+const IMG_LIMITS = { edificio:10, logotipo:5, exposicion:10, adicional:20 };
+const MAX_IMG_MB = 8;
+
+// ── Estado de imágenes (en memoria, no se persiste localmente) ───────────────
+const imgFiles = { edificio:[], logotipo:[], exposicion:[], adicional:[] };
+
+// ── CSRF token ───────────────────────────────────────────────────────────────
+async function fetchCsrf() {
+  try {
+    const r = await fetch(API_BASE + '/api/csrf-token');
+    const d = await r.json();
+    document.getElementById('csrf-token').value = d.token;
+  } catch(e) {
+    console.error('No se pudo obtener CSRF token');
+  }
+}
+
+// ── Progreso ──────────────────────────────────────────────────────────────────
+function updateProgress() {
+  const fields = ['nombre','pais','anio_desde','descripcion'];
+  const filled = fields.filter(f => {
+    const el = document.getElementById(f);
+    return el && el.value.trim().length > 0;
+  });
+  const tipoOk = document.querySelector('input[name="tipo"]:checked') ? 1 : 0;
+  const total = fields.length + 1;
+  const pct = Math.round((filled.length + tipoOk) / total * 100);
+  const bar = document.getElementById('progress-fill');
+  bar.style.width = pct + '%';
+  bar.closest('[role=progressbar]').setAttribute('aria-valuenow', pct);
+}
+
+// ── Contador de caracteres ────────────────────────────────────────────────────
+function updateCharCount(el, countId, max) {
+  const n = el.value.length;
+  const counter = document.getElementById(countId);
+  counter.textContent = n + ' / ' + max;
+  counter.className = 'char-count' + (n > max * 0.95 ? ' near' : '') + (n >= max ? ' over' : '');
+  updateProgress();
+}
+
+// ── Validación de imagen (client-side) ───────────────────────────────────────
+function validateImageFile(file) {
+  const allowed = ['image/jpeg','image/png','image/webp'];
+  if (!allowed.includes(file.type)) return `"${file.name}": formato no permitido (solo JPG, PNG, WebP)`;
+  if (file.size > MAX_IMG_MB * 1024 * 1024) return `"${file.name}": supera los ${MAX_IMG_MB}MB`;
+  return null;
+}
+
+// ── Drag & drop ───────────────────────────────────────────────────────────────
+function dzDragOver(e, cat) { e.preventDefault(); document.getElementById('dz-'+cat).classList.add('drag-over'); }
+function dzDragLeave(cat)   { document.getElementById('dz-'+cat).classList.remove('drag-over'); }
+function dzDrop(e, cat) {
+  e.preventDefault();
+  dzDragLeave(cat);
+  addFiles(Array.from(e.dataTransfer.files), cat);
+}
+function handleFiles(input, cat) {
+  addFiles(Array.from(input.files), cat);
+  input.value = '';
+}
+
+function addFiles(files, cat) {
+  const limit = IMG_LIMITS[cat];
+  const errEl = document.getElementById('err-img-'+cat);
+  errEl.style.display = 'none'; errEl.textContent = '';
+  const errors = [];
+
+  for (const file of files) {
+    if (imgFiles[cat].length >= limit) { errors.push(`Límite de ${limit} imágenes alcanzado para esta categoría`); break; }
+    const err = validateImageFile(file);
+    if (err) { errors.push(err); continue; }
+    imgFiles[cat].push(file);
+  }
+
+  if (errors.length) {
+    errEl.textContent = errors.join(' · ');
+    errEl.classList.add('visible');
+    errEl.style.display = 'block';
+  }
+
+  renderThumbs(cat);
+  document.getElementById('count-'+cat).textContent = imgFiles[cat].length + ' / ' + limit;
+}
+
+function renderThumbs(cat) {
+  const container = document.getElementById('thumbs-'+cat);
+  container.innerHTML = '';
+  imgFiles[cat].forEach((file, idx) => {
+    const url = URL.createObjectURL(file);
+    const div = document.createElement('div');
+    div.className = 'thumb';
+    div.innerHTML = `<img src="${url}" alt="Imagen ${idx+1}" loading="lazy">
+      <button type="button" class="thumb-remove" onclick="removeImg('${cat}',${idx})" aria-label="Eliminar imagen ${idx+1}">×</button>`;
+    container.appendChild(div);
+  });
+}
+
+function removeImg(cat, idx) {
+  imgFiles[cat].splice(idx, 1);
+  renderThumbs(cat);
+  document.getElementById('count-'+cat).textContent = imgFiles[cat].length + ' / ' + IMG_LIMITS[cat];
+}
+
+// ── Consentimiento → habilitar submit ────────────────────────────────────────
+document.getElementById('consent').addEventListener('change', function() {
+  document.getElementById('submit-btn').disabled = !this.checked;
+});
+
+// ── Validación de formulario ──────────────────────────────────────────────────
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(el => {
+    el.textContent = ''; el.classList.remove('visible');
+  });
+  document.querySelectorAll('input.error, select.error, textarea.error').forEach(el => {
+    el.classList.remove('error');
+  });
+  const ge = document.getElementById('global-error');
+  ge.textContent = ''; ge.classList.remove('visible');
+}
+
+function showError(fieldId, msg) {
+  const errEl = document.getElementById('err-' + fieldId);
+  const inputEl = document.getElementById(fieldId) || document.querySelector(`[name="${fieldId}"]`);
+  if (errEl) { errEl.textContent = msg; errEl.classList.add('visible'); }
+  if (inputEl) inputEl.classList.add('error');
+}
+
+function validateForm() {
+  let ok = true;
+
+  const nombre = document.getElementById('nombre').value.trim();
+  if (!nombre || nombre.length < 3) { showError('nombre', 'Requerido, mínimo 3 caracteres'); ok = false; }
+
+  if (!document.getElementById('pais').value) { showError('pais', 'Seleccioná un país'); ok = false; }
+
+  const desde = parseInt(document.getElementById('anio_desde').value);
+  const hasta  = document.getElementById('anio_hasta').value.trim();
+  if (!desde || desde < 1800 || desde > 2030) { showError('anio', 'Año de inicio inválido'); ok = false; }
+  else if (hasta && (parseInt(hasta) < desde)) { showError('anio', 'El año de cierre debe ser posterior al de inicio'); ok = false; }
+
+  if (!document.querySelector('input[name="tipo"]:checked')) { showError('tipo', 'Seleccioná un tipo institucional'); ok = false; }
+
+  const desc = document.getElementById('descripcion').value.trim();
+  if (!desc || desc.length < 20) { showError('descripcion', 'Descripción requerida (mínimo 20 caracteres)'); ok = false; }
+
+  return ok;
+}
+
+// ── Envío ─────────────────────────────────────────────────────────────────────
+document.getElementById('ficha-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  clearErrors();
+  if (!validateForm()) {
+    const firstErr = document.querySelector('.field-error.visible');
+    if (firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.classList.add('loading'); btn.textContent = 'Enviando';
+
+  const fd = new FormData();
+  fd.append('_csrf_token', document.getElementById('csrf-token').value);
+  fd.append('nombre',       document.getElementById('nombre').value.trim());
+  fd.append('pais',         document.getElementById('pais').value);
+  fd.append('anio_desde',   document.getElementById('anio_desde').value);
+  fd.append('anio_hasta',   document.getElementById('anio_hasta').value);
+  fd.append('tipo',         document.querySelector('input[name="tipo"]:checked')?.value || '');
+  fd.append('descripcion',  document.getElementById('descripcion').value.trim());
+  fd.append('historia',     document.getElementById('historia').value.trim());
+  fd.append('funcionamiento', document.getElementById('funcionamiento').value.trim());
+  fd.append('financiamiento', document.getElementById('financiamiento').value.trim());
+  fd.append('logicas_inter',  document.getElementById('logicas_inter').value.trim());
+
+  // Adjuntar imágenes por categoría
+  for (const [cat, files] of Object.entries(imgFiles)) {
+    files.forEach(f => fd.append('img_' + cat, f));
+  }
+
+  try {
+    const res = await fetch(API_BASE + '/api/submit', {
+      method: 'POST',
+      headers: { 'X-CSRF-Token': document.getElementById('csrf-token').value },
+      body: fd,
+    });
+    const data = await res.json();
+
+    if (res.status === 201 && data.ok) {
+      // Éxito
+      document.getElementById('ficha-form').style.display = 'none';
+      document.querySelector('.intro').style.display = 'none';
+      document.querySelector('.privacy-notice').style.display = 'none';
+      document.getElementById('ref-code').textContent = data.ficha_id;
+      document.getElementById('success-screen').classList.add('visible');
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else if (data.errors) {
+      // Errores de validación del servidor
+      Object.entries(data.errors).forEach(([field, msg]) => {
+        if (Array.isArray(msg)) {
+          const ge = document.getElementById('global-error');
+          ge.innerHTML = '<strong>Errores en imágenes:</strong> ' + msg.join('<br>');
+          ge.classList.add('visible');
+        } else {
+          showError(field, msg);
+        }
+      });
+      document.querySelector('.field-error.visible')?.scrollIntoView({behavior:'smooth', block:'center'});
+      // Renovar CSRF
+      await fetchCsrf();
+    } else {
+      throw new Error(data.error || 'Error desconocido');
+    }
+  } catch(err) {
+    const ge = document.getElementById('global-error');
+    ge.textContent = 'No se pudo enviar la ficha. Verificá tu conexión e intentá nuevamente. (' + err.message + ')';
+    ge.classList.add('visible');
+    ge.scrollIntoView({behavior:'smooth', block:'center'});
+    await fetchCsrf();
+  } finally {
+    btn.classList.remove('loading');
+    btn.textContent = 'Enviar ficha';
+    btn.disabled = !document.getElementById('consent').checked;
+  }
+});
+
+// ── Política de privacidad ───────────────────────────────────────────────────
+async function openPolicy() {
+  document.getElementById('policy-modal').classList.add('open');
+  try {
+    const r = await fetch(API_BASE + '/api/policy');
+    const d = await r.json();
+    const recopilamos = d.datos_que_recopilamos.map(x => `<li class="good">${x}</li>`).join('');
+    const noRecop = d.datos_que_NO_recopilamos.map(x => `<li class="bad">${x}</li>`).join('');
+    document.getElementById('policy-content').innerHTML = `
+      <h3>Qué datos recopilamos</h3>
+      <ul>${recopilamos}</ul>
+      <h3>Qué datos NO recopilamos</h3>
+      <ul>${noRecop}</ul>
+      <h3>Uso de los datos</h3>
+      <p>${d.uso_de_datos}</p>
+      <h3>Almacenamiento</h3>
+      <p>${d.almacenamiento}</p>
+      <h3>Tus derechos</h3>
+      <p>${d.derechos}</p>
+      <h3>Versión</h3>
+      <p style="color:var(--ink3)">Política v${d.version} · ${d.fecha}</p>`;
+  } catch {
+    document.getElementById('policy-content').innerHTML = '<p style="color:var(--accent)">No se pudo cargar la política. Intentá más tarde.</p>';
+  }
+}
+function closePolicy() { document.getElementById('policy-modal').classList.remove('open'); }
+document.getElementById('policy-modal').addEventListener('click', function(e) {
+  if (e.target === this) closePolicy();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePolicy(); });
+
+// ── Reset ────────────────────────────────────────────────────────────────────
+function resetForm() {
+  document.getElementById('ficha-form').reset();
+  document.getElementById('ficha-form').style.display = '';
+  document.querySelector('.intro').style.display = '';
+  document.querySelector('.privacy-notice').style.display = '';
+  document.getElementById('success-screen').classList.remove('visible');
+  Object.keys(imgFiles).forEach(cat => {
+    imgFiles[cat] = [];
+    renderThumbs(cat);
+    document.getElementById('count-'+cat).textContent = '0 / ' + IMG_LIMITS[cat];
+  });
+  clearErrors();
+  fetchCsrf();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── Actualizar progreso en cambios ───────────────────────────────────────────
+['nombre','pais','anio_desde','descripcion'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updateProgress);
+});
+document.querySelectorAll('input[name="tipo"]').forEach(r => r.addEventListener('change', updateProgress));
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+fetchCsrf();
+updateProgress();
+</script>
+</body>
+</html>
